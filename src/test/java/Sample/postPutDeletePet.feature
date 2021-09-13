@@ -6,7 +6,7 @@ Feature: create new Pet, change it and delete at the end
     * def pet =
     """
     {
-      "id": 11,
+      "id": 10,
       "category": {
         "id": 0,
         "name": "cat"
@@ -28,6 +28,8 @@ Feature: create new Pet, change it and delete at the end
     And request pet
     When method POST
     Then status 200
+    And match response.id == '#present'
+    And match each response.tags == {'id' : '#number', 'name': '#string'}
 
 
   Scenario: put data
